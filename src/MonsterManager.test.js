@@ -18,7 +18,9 @@ describe('Monster Manager componenet', () => {
 
 		expect(monsterForm.exists()).toBeTruthy()
 
+		// NOTE: verify name input
 		const nameInput = monsterForm.find('input#mon-name')
+		expect(nameInput.exists()).toBeTruthy()
 		const nameProps = nameInput.props()
 
 		expect(nameProps.id).toEqual('mon-name')
@@ -26,5 +28,12 @@ describe('Monster Manager componenet', () => {
 		expect(nameProps.type).toEqual('text')
 		expect(nameProps.value).toEqual('')
 		expect(nameProps.onChange).toBeDefined()
+
+		// NOTE: verify submit input
+		const submitInput = monsterForm.find('input[type="submit"]')
+		expect(submitInput.exists()).toBeTruthy()
+		const submitProps = submitInput.props()
+
+		expect(submitProps.value).toEqual('Add Monster')
 	})
 })
