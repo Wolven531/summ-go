@@ -20,6 +20,7 @@ class MonsterManager extends Component {
 						<input
 							id="mon-name"
 							name="mon-name"
+							type="text"
 							onChange={this.onMonsterNameChange}
 							value={this.state.monsterName} />
 					</section>
