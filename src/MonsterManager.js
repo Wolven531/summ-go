@@ -15,7 +15,7 @@ class MonsterManager extends Component {
 		return (
 			<article className="monster-manager">
 				<h2>Monster Manager</h2>
-				<section>
+				<section className="monster-storage">
 					{this.state.monsters.length === 0 && <p>No monsters</p>}
 					{this.state.monsters.length > 0 &&
 					<ul>

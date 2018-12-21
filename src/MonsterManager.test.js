@@ -15,8 +15,10 @@ describe('Monster Manager componenet', () => {
 	it('renders monster addition form properly', () => {
 		fixture = shallow(<MonsterManager />)
 		const monsterForm = fixture.find('form')
+		const monsterStorage = fixture.find('.monster-storage')
 
 		expect(monsterForm.exists()).toBeTruthy()
+		expect(monsterStorage.exists()).toBeTruthy()
 
 		// NOTE: verify name input
 		const nameInput = monsterForm.find('input#mon-name')
