@@ -6,7 +6,8 @@ class MonsterManager extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			monsterName: ''
+			monsterName: '',
+			monsters: []
 		}
 	}
 
@@ -14,6 +15,13 @@ class MonsterManager extends Component {
 		return (
 			<article className="monster-manager">
 				<h2>Monster Manager</h2>
+				<section>
+					{this.state.monsters.length === 0 && <p>No monsters</p>}
+					{this.state.monsters.length > 0 &&
+					<ul>
+						{this.state.monsters.map(monster => <li>{monster.name}</li>)}
+					</ul>}
+				</section>
 				<form onSubmit={this.addMonster}>
 					<section>
 						<label htmlFor="mon-name">Name</label>
@@ -36,7 +44,8 @@ class MonsterManager extends Component {
 			alert('Monster name required')
 			return
 		}
-		this.setState({ monsterName: '' })
+		const updatedMonsters = [...this.state.monsters].concat({ name: this.state.monsterName })
+		this.setState({ monsterName: '', monsters: updatedMonsters })
 	}
 
 	onMonsterNameChange = (evt) => {
