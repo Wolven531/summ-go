@@ -19,7 +19,8 @@ class MonsterManager extends Component {
 					{this.state.monsters.length === 0 && <p>No monsters</p>}
 					{this.state.monsters.length > 0 &&
 					<ul>
-						{this.state.monsters.map(monster => <li>{monster.name}</li>)}
+						{this.state.monsters.map(monster =>
+							<li key={monster.name}>{monster.name}</li>)}
 					</ul>}
 				</section>
 				<form onSubmit={this.addMonster}>
@@ -48,9 +49,7 @@ class MonsterManager extends Component {
 		this.setState({ monsterName: '', monsters: updatedMonsters })
 	}
 
-	onMonsterNameChange = (evt) => {
-		this.setState({ monsterName: evt.target.value })
-	}
+	onMonsterNameChange = ({ target: { value } }) => this.setState({ monsterName: value })
 }
 
 export { MonsterManager }
