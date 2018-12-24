@@ -6,16 +6,24 @@ import { MonsterManager } from './MonsterManager'
 
 describe('Monster Manager componenet', () => {
 	let fixture
-
+	let mockAlert
+	let mockPreventDefault
+	let originalAlert
+	
 	beforeEach(() => {
 		fixture = shallow(<MonsterManager />)
+		
+		originalAlert = window.alert
+		mockAlert = jest.fn()
+		mockPreventDefault = jest.fn()
+		window.alert = mockAlert
 	})
 
-	it('renders properly without props', () => {
+	it('renders without props', () => {
 		expect(fixture).toMatchSnapshot()
 	})
 
-	it('renders monster addition form properly', () => {
+	it('renders monster addition form', () => {
 		const monsterForm = fixture.find('form')
 		const monsterStorage = fixture.find('.monster-storage')
 
@@ -43,13 +51,24 @@ describe('Monster Manager componenet', () => {
 		expect(submitProps.value).toEqual('Add Monster')
 	})
 
-	describe('filling in monster name and clicking add', () => {
-		let mockPreventDefault
+	describe('clicking add with empty monster name', () => {
+		beforeEach(() => {
+			fixture = mount(<MonsterManager />)
+			fixture.find('input[type="submit"]').simulate('submit', { preventDefault: mockPreventDefault })
+		})
 
+		it('should display alert message', () => {
+			fixture.update()
+			expect(mockPreventDefault).toHaveBeenCalledTimes(1)
+			expect(mockAlert).toHaveBeenCalledTimes(1)
+			expect(fixture.find('.monster-storage li')).toHaveLength(0)
+		})
+	})
+
+	describe('filling in monster name and clicking add', () => {
 		beforeEach(() => {
 			// NOTE: use mount due to heavy DOM interaction
 			fixture = mount(<MonsterManager />)
-			mockPreventDefault = jest.fn()
 			fixture.find('input#mon-name').simulate('change', { target: { value: 'mon1' } })
 			fixture.find('input[type="submit"]').simulate('submit', { preventDefault: mockPreventDefault })
 		})
@@ -65,5 +84,9 @@ describe('Monster Manager componenet', () => {
 		afterEach(() => {
 			fixture.unmount()
 		})
+	})
+
+	afterEach(() => {
+		window.alert = originalAlert
 	})
 })
