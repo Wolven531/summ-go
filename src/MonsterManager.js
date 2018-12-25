@@ -28,7 +28,7 @@ class MonsterManager extends Component {
 		}
 	}
 
-	componentWillUnmount() {
+	storeMonstersToLocal() {
 		if (!window.localStorage) {
 			return
 		}
