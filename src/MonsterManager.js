@@ -11,6 +11,36 @@ class MonsterManager extends Component {
 		}
 	}
 
+	componentDidMount() {
+		if (!window.localStorage) {
+			console.log('no localStorage')
+			return
+		}
+		const monstersString = window.localStorage.getItem('summ-go.monsters')
+		if (!monstersString || monstersString === '') {
+			console.log('no monster string in localStorage')
+			return
+		}
+		try {
+			const monsters = JSON.parse(monstersString)
+			this.setState({ monsters })
+		}
+		catch {
+			console.warn('Failed to load monsters from local storage')
+		}
+	}
+
+	componentWillUnmount() {
+		console.log('un mounting...')
+		if (!window.localStorage) {
+			console.log('no localStorage')
+			return
+		}
+		window.localStorage.setItem('summ-go.monsters', JSON.stringify(this.state.monsters))
+	}
+
+	comp
+
 	render() {
 		return (
 			<article className="monster-manager">
