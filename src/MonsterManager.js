@@ -35,8 +35,6 @@ class MonsterManager extends Component {
 		window.localStorage.setItem('summ-go.monsters', JSON.stringify(this.state.monsters))
 	}
 
-	comp
-
 	render() {
 		return (
 			<article className="monster-manager">
