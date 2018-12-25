@@ -61,6 +61,7 @@ describe('Monster Manager componenet', () => {
 			fixture.update()
 			expect(mockPreventDefault).toHaveBeenCalledTimes(1)
 			expect(mockAlert).toHaveBeenCalledTimes(1)
+			expect(mockAlert).toHaveBeenCalledWith('Monster name required')
 			expect(fixture.find('.monster-storage li')).toHaveLength(0)
 		})
 	})
