@@ -28,11 +28,12 @@ class MonsterManager extends Component {
 		}
 	}
 
-	storeMonstersToLocal() {
+	storeMonstersToLocal = () => {
 		if (!window.localStorage) {
 			return
 		}
 		window.localStorage.setItem('summ-go.monsters', JSON.stringify(this.state.monsters))
+		alert('Saved')
 	}
 
 	render() {
@@ -46,6 +47,9 @@ class MonsterManager extends Component {
 						{this.state.monsters.map(monster =>
 							<li key={monster.name}>{monster.name}</li>)}
 					</ul>}
+				</section>
+				<section>
+					<button onClick={this.storeMonstersToLocal}>Store in Local Storage</button>
 				</section>
 				<form onSubmit={this.addMonster}>
 					<section>
