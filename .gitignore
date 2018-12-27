@@ -61,4 +61,4 @@ typings/
 .next
 
 # ignore snapshots from tests
-src/__snapshots__/**
+src/**/__snapshots__/**
