@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { MonsterManager } from './MonsterManager'
+import { MonsterManager } from '../MonsterManager/MonsterManager'
 
 import './App.css'
 
