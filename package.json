@@ -11,6 +11,7 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
+		"test-up": "react-scripts test --color --coverage --updateSnapshot --watchAll",
 		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {
