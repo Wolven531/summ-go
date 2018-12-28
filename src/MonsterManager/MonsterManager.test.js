@@ -6,20 +6,30 @@ import { MonsterManager } from './MonsterManager'
 
 describe('Monster Manager componenet', () => {
 	let fixture
-	let mockConsoleLog
 	let mockAlert
+	let mockConsoleLog
+	let mockConsoleWarn
 	let mockPreventDefault
 	let originalAlert
+	let originalConsoleLog
+	let originalConsoleWarn
 	
 	beforeEach(() => {
 		fixture = shallow(<MonsterManager />)
 		
-		mockConsoleLog = jest.fn()
 		mockAlert = jest.fn()
+		mockConsoleLog = jest.fn()
+		mockConsoleWarn = jest.fn()
 		mockPreventDefault = jest.fn()
 
 		originalAlert = window.alert
 		window.alert = mockAlert
+
+		originalConsoleLog = console.log
+		console.log = mockConsoleLog
+
+		originalConsoleWarn = console.warn
+		console.warn = mockConsoleWarn
 
 		localStorage.clear()
 	})
@@ -98,5 +108,7 @@ describe('Monster Manager componenet', () => {
 
 	afterEach(() => {
 		window.alert = originalAlert
+		console.log = originalConsoleLog
+		console.warn = originalConsoleWarn
 	})
 })
