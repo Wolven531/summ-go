@@ -4,32 +4,20 @@ import { mount, shallow } from 'enzyme'
 
 import { MonsterManager } from './MonsterManager'
 
-describe('Monster Manager componenet', () => {
+describe('Monster Manager component', () => {
 	let fixture
 	let mockAlert
-	let mockConsoleLog
-	let mockConsoleWarn
 	let mockPreventDefault
 	let originalAlert
-	let originalConsoleLog
-	let originalConsoleWarn
 	
 	beforeEach(() => {
 		fixture = shallow(<MonsterManager />)
 		
 		mockAlert = jest.fn()
-		mockConsoleLog = jest.fn()
-		mockConsoleWarn = jest.fn()
 		mockPreventDefault = jest.fn()
 
 		originalAlert = window.alert
 		window.alert = mockAlert
-
-		originalConsoleLog = console.log
-		console.log = mockConsoleLog
-
-		originalConsoleWarn = console.warn
-		console.warn = mockConsoleWarn
 
 		localStorage.clear()
 	})
@@ -108,7 +96,30 @@ describe('Monster Manager componenet', () => {
 
 	afterEach(() => {
 		window.alert = originalAlert
-		console.log = originalConsoleLog
-		console.warn = originalConsoleWarn
+	})
+})
+
+describe('when localStorage has a bad value', () => {
+	let fixture
+	let mockConsole
+	let originalConsole
+
+	beforeEach(() => {
+		originalConsole = console
+		mockConsole = {
+			log: jest.fn(),
+			warn: jest.fn()
+		}
+		console = mockConsole
+		localStorage.setItem('summ-go.monsters', 'asdf')
+		fixture = shallow(<MonsterManager />)
+	})
+
+	it('handles errors loading from localStorage properly', () => {
+		expect(mockConsole.warn).toHaveBeenLastCalledWith('Failed to load monsters from local storage')
+	})
+
+	afterEach(() => {
+		console = originalConsole
 	})
 })
