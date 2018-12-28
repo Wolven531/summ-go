@@ -6,6 +6,7 @@ import { MonsterManager } from './MonsterManager'
 
 describe('Monster Manager componenet', () => {
 	let fixture
+	let mockConsoleLog
 	let mockAlert
 	let mockPreventDefault
 	let originalAlert
@@ -13,14 +14,22 @@ describe('Monster Manager componenet', () => {
 	beforeEach(() => {
 		fixture = shallow(<MonsterManager />)
 		
-		originalAlert = window.alert
+		mockConsoleLog = jest.fn()
 		mockAlert = jest.fn()
 		mockPreventDefault = jest.fn()
+
+		originalAlert = window.alert
 		window.alert = mockAlert
+
+		localStorage.clear()
 	})
 
 	it('renders without props', () => {
 		expect(fixture).toMatchSnapshot()
+	})
+
+	it('loads from localStorage', () => {
+		expect(localStorage.getItem).toHaveBeenLastCalledWith('summ-go.monsters')
 	})
 
 	it('renders monster addition form', () => {
