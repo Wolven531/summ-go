@@ -123,3 +123,22 @@ describe('when localStorage has a bad value', () => {
 		console = originalConsole
 	})
 })
+
+describe('when localStorage does not exist', () => {
+	let fixture
+	let originalStorage
+
+	beforeEach(() => {
+		originalStorage = localStorage
+		delete window.localStorage
+		fixture = shallow(<MonsterManager />)
+	})
+
+	it('renders without exception', () => {
+		expect(fixture).toMatchSnapshot()
+	})
+
+	afterEach(() => {
+		window.localStorage = originalStorage
+	})
+})
