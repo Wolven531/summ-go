@@ -105,12 +105,12 @@ describe('when localStorage has a bad value', () => {
 	let originalConsole
 
 	beforeEach(() => {
-		originalConsole = console
+		originalConsole = window.console
 		mockConsole = {
 			log: jest.fn(),
 			warn: jest.fn()
 		}
-		console = mockConsole
+		window.console = mockConsole
 		localStorage.setItem('summ-go.monsters', 'asdf')
 		fixture = shallow(<MonsterManager />)
 	})
@@ -120,7 +120,7 @@ describe('when localStorage has a bad value', () => {
 	})
 
 	afterEach(() => {
-		console = originalConsole
+		window.console = originalConsole
 	})
 })
 
