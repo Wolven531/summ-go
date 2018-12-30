@@ -28,14 +28,6 @@ class MonsterManager extends Component {
 		}
 	}
 
-	storeMonstersToLocal = () => {
-		if (!window.localStorage) {
-			return
-		}
-		window.localStorage.setItem('summ-go.monsters', JSON.stringify(this.state.monsters))
-		alert('Saved')
-	}
-
 	render() {
 		return (
 			<article className="monster-manager">
@@ -67,8 +59,8 @@ class MonsterManager extends Component {
 		)
 	}
 
-	addMonster = (evt) => {
-		evt.preventDefault()
+	addMonster = ({ preventDefault }) => {
+		preventDefault()
 		if (!this.state.monsterName || this.state.monsterName === '') {
 			alert('Monster name required')
 			return
@@ -78,6 +70,14 @@ class MonsterManager extends Component {
 	}
 
 	onMonsterNameChange = ({ target: { value } }) => this.setState({ monsterName: value })
+
+	storeMonstersToLocal = () => {
+		if (!window.localStorage) {
+			return
+		}
+		window.localStorage.setItem('summ-go.monsters', JSON.stringify(this.state.monsters))
+		alert('Saved')
+	}
 }
 
 export { MonsterManager }
