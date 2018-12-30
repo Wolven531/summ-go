@@ -126,21 +126,23 @@ describe('when localStorage has a bad value', () => {
 
 describe('when localStorage has valid monsters', () => {
 	let fixture
+	let loadedMonsters = [
+		{ name: 'mon 1' },
+		{ name: 'mon 2' },
+		{ name: 'mon 3' }
+	]
 
 	beforeEach(() => {
-		localStorage.setItem('summ-go.monsters', JSON.stringify([
-			{ name: 'mon 1' },
-			{ name: 'mon 2' },
-			{ name: 'mon 3' }
-		]))
+		localStorage.setItem('summ-go.monsters', JSON.stringify(loadedMonsters))
 		fixture = shallow(<MonsterManager />)
 	})
 
 	it('handles errors loading from localStorage properly', () => {
-		expect(fixture.find('.monster-storage li')).toHaveLength(3)
-		expect(fixture.find('.monster-storage li').at(0).text()).toBe('mon 1')
-		expect(fixture.find('.monster-storage li').at(1).text()).toBe('mon 2')
-		expect(fixture.find('.monster-storage li').at(2).text()).toBe('mon 3')
+		expect(fixture.find('.monster-storage li')).toHaveLength(loadedMonsters.length)
+		for (let i = 0; i < loadedMonsters.length; i++) {
+			const mon = loadedMonsters[i]
+			expect(fixture.find('.monster-storage li').at(i).text()).toBe(mon.name)
+		}
 	})
 })
 
