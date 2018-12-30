@@ -2,6 +2,8 @@ import React from 'react'
 
 import { mount, shallow } from 'enzyme'
 
+import { Monster } from '../Models/Monster'
+
 import { MonsterManager } from './MonsterManager'
 
 describe('Monster Manager component', () => {
@@ -127,9 +129,9 @@ describe('when localStorage has a bad value', () => {
 describe('when localStorage has valid monsters', () => {
 	let fixture
 	let loadedMonsters = [
-		{ name: 'mon 1' },
-		{ name: 'mon 2' },
-		{ name: 'mon 3' }
+		new Monster('mon 1'),
+		new Monster('mon 2'),
+		new Monster('mon 3')
 	]
 
 	beforeEach(() => {
