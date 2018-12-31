@@ -162,6 +162,16 @@ describe('when localStorage does not exist', () => {
 		expect(fixture).toMatchSnapshot()
 	})
 
+	describe('clicking store to local button', () => {
+		beforeEach(() => {
+			fixture.find('button.store-to-local').simulate('click', {})
+		})
+
+		it('handles lack of localStorage gracefully', () => {
+			expect(fixture).toMatchSnapshot()
+		})
+	})
+
 	afterEach(() => {
 		window.localStorage = originalStorage
 	})
