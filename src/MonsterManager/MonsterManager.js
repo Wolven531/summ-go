@@ -41,7 +41,9 @@ class MonsterManager extends Component {
 					</ul>}
 				</section>
 				<section>
-					<button onClick={this.storeMonstersToLocal}>Store in Local Storage</button>
+					<button
+						className="store-to-local"
+						onClick={this.storeMonstersToLocal}>Store in Local Storage</button>
 				</section>
 				<form onSubmit={this.addMonster}>
 					<section>
