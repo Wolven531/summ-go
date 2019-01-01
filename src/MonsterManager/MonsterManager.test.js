@@ -146,6 +146,23 @@ describe('when localStorage has valid monsters', () => {
 			expect(fixture.find('.monster-storage li').at(i).text()).toBe(mon.name)
 		}
 	})
+
+	describe('clicking store to local button', () => {
+		let originalAlert
+
+		beforeEach(() => {
+			originalAlert = window.alert
+			fixture.find('button.store-to-local').simulate('click', {})
+		})
+
+		it('replaces the monsters in localStorage', () => {
+			expect(localStorage.setItem).toHaveBeenLastCalledWith('summ-go.monsters', JSON.stringify(loadedMonsters))
+		})
+
+		afterEach(() => {
+			window.alert = originalAlert
+		})
+	})
 })
 
 describe('when localStorage does not exist', () => {
