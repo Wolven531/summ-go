@@ -149,14 +149,18 @@ describe('when localStorage has valid monsters', () => {
 
 	describe('clicking store to local button', () => {
 		let originalAlert
+		let mockAlert
 
 		beforeEach(() => {
 			originalAlert = window.alert
+			mockAlert = jest.fn()
+			window.alert = mockAlert
 			fixture.find('button.store-to-local').simulate('click', {})
 		})
 
 		it('replaces the monsters in localStorage', () => {
 			expect(localStorage.setItem).toHaveBeenLastCalledWith('summ-go.monsters', JSON.stringify(loadedMonsters))
+			expect(mockAlert).toHaveBeenLastCalledWith('Saved')
 		})
 
 		afterEach(() => {
