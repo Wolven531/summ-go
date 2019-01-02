@@ -20,6 +20,11 @@
 	"jest": {
 		"snapshotSerializers": [
 			"enzyme-to-json/serializer"
+		],
+		"collectCoverageFrom": [
+			"src/**/*.{js,jsx}",
+			"!<rootDir>/node_modules/",
+			"!<rootDir>/src/serviceWorker.js"
 		]
 	},
 	"browserslist": [
