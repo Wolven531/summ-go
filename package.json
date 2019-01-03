@@ -24,7 +24,8 @@
 		"collectCoverageFrom": [
 			"src/**/*.{js,jsx}",
 			"!<rootDir>/node_modules/",
-			"!<rootDir>/src/serviceWorker.js"
+			"!<rootDir>/src/serviceWorker.js",
+			"!<rootDir>/src/index.js"
 		]
 	},
 	"browserslist": [
