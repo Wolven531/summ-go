@@ -55,7 +55,7 @@ class MonsterManager extends Component {
 							onChange={this.onMonsterNameChange}
 							value={this.state.monsterName} />
 					</section>
-					<input type="submit" value="Add Monster" />
+					<input className="add-monster" type="submit" value="Add Monster" />
 				</form>
 				<section>
 					<button
