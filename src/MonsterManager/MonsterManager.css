@@ -1,3 +1,10 @@
 .monster-manager {
 	background-color: rgba(0, 0, 0, .5);
 }
+
+.monster-manager .clear-monsters {
+	background-color: #f00;
+	color: #ff0;
+	font-weight: bold;
+	padding: 1em;
+}
