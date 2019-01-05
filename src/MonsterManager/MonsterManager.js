@@ -57,6 +57,11 @@ class MonsterManager extends Component {
 					</section>
 					<input type="submit" value="Add Monster" />
 				</form>
+				<section>
+					<button
+						className="clear-monsters"
+						onClick={this.clearMonsters}>Clear Current Monsters</button>
+				</section>
 			</article>
 		)
 	}
@@ -70,6 +75,8 @@ class MonsterManager extends Component {
 		const updatedMonsters = [...this.state.monsters].concat({ name: this.state.monsterName })
 		this.setState({ monsterName: '', monsters: updatedMonsters })
 	}
+
+	clearMonsters = () => this.setState({ monsters: [] })
 
 	onMonsterNameChange = ({ target: { value } }) => this.setState({ monsterName: value })
 
