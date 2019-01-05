@@ -8,3 +8,10 @@
 	font-weight: bold;
 	padding: 1em;
 }
+
+.monster-manager .add-monster {
+	background-color: #090;
+	color: #fff;
+	font-weight: bold;
+	padding: 1em;
+}
