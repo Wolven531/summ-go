@@ -60,6 +60,14 @@ describe('Monster Manager component', () => {
 		expect(submitProps.value).toEqual('Add Monster')
 	})
 
+	it('renders clear current monsters button', () => {
+		const clearButton = fixture.find('button.clear-monsters')
+
+		expect(clearButton.exists()).toBeTruthy()
+		expect(clearButton.text()).toBe('Clear Current Monsters')
+		expect(clearButton.props().onClick).toBeDefined()
+	})
+
 	describe('clicking add with empty monster name', () => {
 		beforeEach(() => {
 			fixture = mount(<MonsterManager />)
