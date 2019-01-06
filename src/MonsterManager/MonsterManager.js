@@ -12,6 +12,7 @@ class MonsterManager extends Component {
 	}
 
 	componentDidMount() {
+		window.document.title = 'Monster Manager | Summ Go'
 		if (!window.localStorage) {
 			return
 		}
