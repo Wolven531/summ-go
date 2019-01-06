@@ -99,6 +99,17 @@ describe('Monster Manager component', () => {
 			expect(fixture.find('.monster-storage li').text()).toBe('mon1')
 		})
 
+		describe('clicking clear monsters button', () => {
+			beforeEach(() => {
+				fixture.find('.clear-monsters').simulate('click', {})
+			})
+
+			it('should clear the monsters list', () => {
+				expect(fixture.find('.monster-storage li')).toHaveLength(0)
+				expect(fixture.find('.monster-storage p').text()).toBe('No monsters')
+			})
+		})
+
 		afterEach(() => {
 			fixture.unmount()
 		})
