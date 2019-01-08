@@ -80,8 +80,8 @@ class MonsterManager extends Component {
 		)
 	}
 
-	addMonster = ({ preventDefault }) => {
-		preventDefault()
+	addMonster = evt => {
+		evt.preventDefault()
 		if (!this.state.monsterName || this.state.monsterName === '') {
 			alert('Monster name required')
 			return
