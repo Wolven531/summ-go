@@ -1,7 +1,9 @@
 .monster-manager {
 	background-color: rgba(0, 0, 0, .5);
+	/*
 	display: grid;
 	grid-template-rows: auto repeat(5, 1fr);
+	*/
 }
 
 .monster-manager .clear-monsters {
