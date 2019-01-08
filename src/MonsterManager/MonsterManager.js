@@ -7,6 +7,7 @@ class MonsterManager extends Component {
 		super(props)
 		this.state = {
 			monsterName: '',
+			monsterStars: 3,
 			monsters: []
 		}
 	}
@@ -56,6 +57,18 @@ class MonsterManager extends Component {
 							onChange={this.onMonsterNameChange}
 							value={this.state.monsterName} />
 					</section>
+					<section>
+						{[1,2,3,4,5].map(num => <p key={`star-${num}`}>
+							<label htmlFor={`monster-star-${num}`}>{num}</label>
+							<input
+								type="radio"
+								name="monster-stars"
+								id={`monster-star-${num}`}
+								checked={this.state.monsterStars === num}
+								onChange={this.onMonsterStarsChange}
+								value={num} />
+						</p>)}
+					</section>
 					<input className="add-monster" type="submit" value="Add Monster" />
 				</form>
 				<section>
@@ -80,6 +93,8 @@ class MonsterManager extends Component {
 	clearMonsters = () => this.setState({ monsters: [] })
 
 	onMonsterNameChange = ({ target: { value } }) => this.setState({ monsterName: value })
+
+	onMonsterStarsChange = ({ target: { value } }) => this.setState({ monsterStars: parseInt(value, 10) })
 
 	storeMonstersToLocal = () => {
 		if (!window.localStorage) {
