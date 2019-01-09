@@ -52,6 +52,22 @@ describe('Monster Manager component', () => {
 		expect(nameProps.value).toEqual('')
 		expect(nameProps.onChange).toBeDefined()
 
+		// NOTE: verify star inputs
+		const starInputs = monsterForm.find('input[name="monster-stars"]')
+		expect(starInputs).toHaveLength(5)
+
+		let inputCounter = 1
+		for (const starInput of starInputs) {
+			const starInputProps = starInputs.at(inputCounter - 1).props()
+
+			expect(starInputProps.id).toEqual(`monster-star-${inputCounter}`)
+			expect(starInputProps.name).toEqual('monster-stars')
+			expect(starInputProps.type).toEqual('radio')
+			expect(starInputProps.value).toEqual(inputCounter)
+			expect(starInputProps.onChange).toBeDefined()
+			inputCounter++
+		}
+
 		// NOTE: verify submit input
 		const submitInput = monsterForm.find('input[type="submit"]')
 		expect(submitInput.exists()).toBeTruthy()
@@ -83,11 +99,12 @@ describe('Monster Manager component', () => {
 		})
 	})
 
-	describe('filling in monster name and clicking add', () => {
+	describe('filling in monster name and stars and clicking add', () => {
 		beforeEach(() => {
 			// NOTE: use mount due to heavy DOM interaction
 			fixture = mount(<MonsterManager />)
 			fixture.find('input#mon-name').simulate('change', { target: { value: 'mon1' } })
+			fixture.find('input#monster-star-5').simulate('change', { target: { } })
 			fixture.find('input[type="submit"]').simulate('submit', { preventDefault: mockPreventDefault })
 		})
 
