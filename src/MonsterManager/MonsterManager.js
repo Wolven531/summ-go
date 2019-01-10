@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 
+import { Monster } from '../Models/Monster'
+
+import { MonsterDisplay } from '../MonsterDisplay/MonsterDisplay'
+
 import './MonsterManager.css'
 
 class MonsterManager extends Component {
@@ -38,8 +42,7 @@ class MonsterManager extends Component {
 					{this.state.monsters.length === 0 && <p>No monsters</p>}
 					{this.state.monsters.length > 0 &&
 					<ul>
-						{this.state.monsters.map(monster =>
-							<li key={monster.name}>{monster.name}</li>)}
+						{this.state.monsters.map(monster => <MonsterDisplay key={monster.name} monster={monster} />)}
 					</ul>}
 				</section>
 				<section>
@@ -86,8 +89,15 @@ class MonsterManager extends Component {
 			alert('Monster name required')
 			return
 		}
-		const updatedMonsters = [...this.state.monsters].concat({ name: this.state.monsterName })
-		this.setState({ monsterName: '', monsters: updatedMonsters })
+
+		const newMonster = new Monster(this.state.monsterName, this.state.monsterStars)
+		const updatedMonsters = [...this.state.monsters].concat(newMonster)
+
+		this.setState({
+			monsterName: '',
+			monsterStars: 3,
+			monsters: updatedMonsters
+		})
 	}
 
 	clearMonsters = () => this.setState({ monsters: [] })
