@@ -95,7 +95,7 @@ describe('Monster Manager component', () => {
 			expect(mockPreventDefault).toHaveBeenCalledTimes(1)
 			expect(mockAlert).toHaveBeenCalledTimes(1)
 			expect(mockAlert).toHaveBeenCalledWith('Monster name required')
-			expect(fixture.find('.monster-storage li')).toHaveLength(0)
+			expect(fixture.find('.monster-storage .monster-display')).toHaveLength(0)
 		})
 	})
 
@@ -112,8 +112,7 @@ describe('Monster Manager component', () => {
 			fixture.update()
 			expect(mockPreventDefault).toHaveBeenCalledTimes(1)
 			expect(fixture.find('input#mon-name').props().value).toBe('')
-			expect(fixture.find('.monster-storage li')).toHaveLength(1)
-			expect(fixture.find('.monster-storage li').text()).toBe('mon1')
+			expect(fixture.find('.monster-storage .monster-display')).toHaveLength(1)
 		})
 
 		describe('clicking clear monsters button', () => {
@@ -122,7 +121,7 @@ describe('Monster Manager component', () => {
 			})
 
 			it('should clear the monsters list', () => {
-				expect(fixture.find('.monster-storage li')).toHaveLength(0)
+				expect(fixture.find('.monster-storage .monster-display')).toHaveLength(0)
 				expect(fixture.find('.monster-storage p').text()).toBe('No monsters')
 			})
 		})
@@ -165,9 +164,9 @@ describe('when localStorage has a bad value', () => {
 describe('when localStorage has valid monsters', () => {
 	let fixture
 	let loadedMonsters = [
-		new Monster('mon 1'),
-		new Monster('mon 2'),
-		new Monster('mon 3')
+		new Monster('mon 1', 1),
+		new Monster('mon 2', 3),
+		new Monster('mon 3', 5)
 	]
 
 	beforeEach(() => {
@@ -176,11 +175,11 @@ describe('when localStorage has valid monsters', () => {
 	})
 
 	it('handles errors loading from localStorage properly', () => {
-		expect(fixture.find('.monster-storage li')).toHaveLength(loadedMonsters.length)
-		for (let i = 0; i < loadedMonsters.length; i++) {
-			const mon = loadedMonsters[i]
-			expect(fixture.find('.monster-storage li').at(i).text()).toBe(mon.name)
-		}
+		expect(fixture.find('.monster-storage .monster-display')).toHaveLength(loadedMonsters.length)
+		// for (let i = 0; i < loadedMonsters.length; i++) {
+		// 	const mon = loadedMonsters[i]
+		// 	expect(fixture.find('.monster-storage li').at(i).text()).toBe(mon.name)
+		// }
 	})
 
 	describe('clicking store to local button', () => {
