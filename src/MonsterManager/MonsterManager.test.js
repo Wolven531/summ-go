@@ -105,7 +105,7 @@ describe('Monster Manager component', () => {
 			// NOTE: use mount due to heavy DOM interaction
 			fixture = mount(<MonsterManager />)
 			fixture.find('input#mon-name').simulate('change', { target: { value: 'mon1' } })
-			fixture.find('input#monster-star-5').simulate('change', { target: { } })
+			fixture.find('input#monster-star-5').simulate('change', { target: { value: 5 } })
 			fixture.find('input[type="submit"]').simulate('submit', { preventDefault: mockPreventDefault })
 		})
 
@@ -113,7 +113,7 @@ describe('Monster Manager component', () => {
 			fixture.update()
 			expect(mockPreventDefault).toHaveBeenCalledTimes(1)
 			expect(fixture.find('input#mon-name').props().value).toBe('')
-			expect(fixture.find('.monster-storage .monster-display')).toHaveLength(1)
+			expect(fixture.find('.monster-storage').find(MonsterDisplay)).toHaveLength(1)
 		})
 
 		describe('clicking clear monsters button', () => {
