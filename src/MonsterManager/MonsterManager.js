@@ -38,13 +38,6 @@ class MonsterManager extends Component {
 		return (
 			<article className="monster-manager">
 				<h2>Monster Manager</h2>
-				<section className="monster-storage">
-					{this.state.monsters.length === 0 && <p>No monsters</p>}
-					{this.state.monsters.length > 0 &&
-					<ul>
-						{this.state.monsters.map(monster => <MonsterDisplay key={monster.name} monster={monster} />)}
-					</ul>}
-				</section>
 				<section>
 					<button
 						className="store-to-local"
@@ -78,6 +71,13 @@ class MonsterManager extends Component {
 					<button
 						className="clear-monsters"
 						onClick={this.clearMonsters}>Clear Current Monsters</button>
+				</section>
+				<section className="monster-storage">
+					{this.state.monsters.length === 0 && <p>No monsters</p>}
+					{this.state.monsters.length > 0 &&
+					<ul>
+						{this.state.monsters.map(monster => <MonsterDisplay key={monster.name} monster={monster} />)}
+					</ul>}
 				</section>
 			</article>
 		)
