@@ -24,3 +24,7 @@
 	grid-template-columns: repeat(5, 2.5em);
 	justify-content: center;
 }
+
+.monster-manager .monster-storage {
+	overflow: auto;
+}
