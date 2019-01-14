@@ -60,7 +60,7 @@ class MonsterManager extends Component {
 							onChange={this.onMonsterNameChange}
 							value={this.state.monsterName} />
 					</section>
-					<section>
+					<section className="star-editor">
 						{[1,2,3,4,5].map(num => <p key={`star-${num}`}>
 							<label htmlFor={`monster-star-${num}`}>{num}</label>
 							<input
