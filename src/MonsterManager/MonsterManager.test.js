@@ -6,6 +6,7 @@ import { Monster } from '../Models/Monster'
 
 import { MonsterDisplay } from '../MonsterDisplay/MonsterDisplay'
 import { MonsterManager } from './MonsterManager'
+import { MonsterElement } from '../Models/MonsterElement'
 
 describe('Monster Manager component', () => {
 	let fixture
@@ -165,9 +166,9 @@ describe('when localStorage has a bad value', () => {
 describe('when localStorage has valid monsters', () => {
 	let fixture
 	let loadedMonsters = [
-		new Monster('mon 1', 1),
-		new Monster('mon 2', 3),
-		new Monster('mon 3', 5)
+		new Monster('mon 1', MonsterElement.Dark, 1),
+		new Monster('mon 2', MonsterElement.Light, 3),
+		new Monster('mon 3', MonsterElement.Wind, 5)
 	]
 
 	beforeEach(() => {
