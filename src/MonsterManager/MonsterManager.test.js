@@ -70,6 +70,20 @@ describe('Monster Manager component', () => {
 			inputCounter++
 		}
 
+		// NOTE: verify element inputs
+		const elementInputs = monsterForm.find('input[name="monster-element"]')
+		expect(elementInputs).toHaveLength(5)
+
+		for (const elementKey of Object.keys(MonsterElement)) {
+			const elementString = MonsterElement[elementKey]
+			const elementInputProps = monsterForm.find(`input#monster-element-${elementString}`).props()
+
+			expect(elementInputProps.name).toEqual('monster-element')
+			expect(elementInputProps.type).toEqual('radio')
+			expect(elementInputProps.value).toEqual(elementString)
+			expect(elementInputProps.onChange).toBeDefined()
+		}
+
 		// NOTE: verify submit input
 		const submitInput = monsterForm.find('input[type="submit"]')
 		expect(submitInput.exists()).toBeTruthy()

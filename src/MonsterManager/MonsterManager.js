@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { Monster } from '../Models/Monster'
+import { MonsterElement } from '../Models/MonsterElement'
 
 import { MonsterDisplay } from '../MonsterDisplay/MonsterDisplay'
 
@@ -10,6 +11,7 @@ class MonsterManager extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			monsterElement: MonsterElement.Light,
 			monsterName: '',
 			monsterStars: 3,
 			monsters: []
@@ -65,6 +67,21 @@ class MonsterManager extends Component {
 								value={num} />
 						</p>)}
 					</section>
+					<section className="element-editor">
+						{Object.keys(MonsterElement).map(element => {
+							const elementString = MonsterElement[element]
+							return <p key={`element-${elementString}`}>
+								<label htmlFor={`monster-element-${elementString}`}>{elementString}</label>
+								<input
+									type="radio"
+									name="monster-element"
+									id={`monster-element-${elementString}`}
+									checked={this.state.monsterElement === elementString}
+									onChange={this.onMonsterElementChange}
+									value={elementString} />
+							</p>
+						})}
+					</section>
 					<input className="add-monster" type="submit" value="Add Monster" />
 				</form>
 				<section>
@@ -101,6 +118,8 @@ class MonsterManager extends Component {
 	}
 
 	clearMonsters = () => this.setState({ monsters: [] })
+
+	onMonsterElementChange = ({ target: { value } }) => this.setState({ monsterElement: value })
 
 	onMonsterNameChange = ({ target: { value } }) => this.setState({ monsterName: value })
 
