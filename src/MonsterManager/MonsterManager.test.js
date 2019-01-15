@@ -115,19 +115,25 @@ describe('Monster Manager component', () => {
 		})
 	})
 
-	describe('filling in monster name and stars and clicking add', () => {
+	describe('filling in monster name, stars, and element, and clicking add', () => {
 		beforeEach(() => {
 			// NOTE: use mount due to heavy DOM interaction
 			fixture = mount(<MonsterManager />)
 			fixture.find('input#mon-name').simulate('change', { target: { value: 'mon1' } })
 			fixture.find('input#monster-star-5').simulate('change', { target: { value: 5 } })
+			fixture.find('input#monster-element-fire').simulate('change', { target: { value: 'fire' } })
 			fixture.find('input[type="submit"]').simulate('submit', { preventDefault: mockPreventDefault })
 		})
 
-		it('clears name input and adds monster to monster storage', () => {
+		it('clears inputs and adds monster to monster storage', () => {
 			fixture.update()
 			expect(mockPreventDefault).toHaveBeenCalledTimes(1)
 			expect(fixture.find('input#mon-name').props().value).toBe('')
+			expect(fixture.find('input#monster-star-5').props().checked).toBeFalsy()
+			expect(fixture.find('input#monster-star-3').props().checked).toBeTruthy()
+			expect(fixture.find('input#monster-element-fire').props().checked).toBeFalsy()
+			expect(fixture.find('input#monster-element-light').props().checked).toBeTruthy()
+
 			expect(fixture.find('.monster-storage').find(MonsterDisplay)).toHaveLength(1)
 		})
 

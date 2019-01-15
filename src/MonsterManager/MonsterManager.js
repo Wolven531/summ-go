@@ -107,10 +107,11 @@ class MonsterManager extends Component {
 			return
 		}
 
-		const newMonster = new Monster(this.state.monsterName, this.state.monsterStars)
+		const newMonster = new Monster(this.state.monsterName, this.state.monsterElement, this.state.monsterStars)
 		const updatedMonsters = [...this.state.monsters].concat(newMonster)
 
 		this.setState({
+			monsterElement: MonsterElement.Light,
 			monsterName: '',
 			monsterStars: 3,
 			monsters: updatedMonsters
