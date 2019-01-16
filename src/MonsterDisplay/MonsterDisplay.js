@@ -5,8 +5,11 @@ import * as React from 'react'
 const MonsterDisplay = ({ monster }) => (
 	<article className="monster-display">
 		<h3>{monster.name}</h3>
-		<section>
+		<section className="monster-stars">
 			{monster.stars}
+		</section>
+		<section className="monster-element">
+			{monster.element}
 		</section>
 	</article>
 )
