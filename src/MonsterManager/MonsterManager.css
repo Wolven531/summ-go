@@ -18,6 +18,7 @@
 	padding: 1em;
 }
 
+.monster-manager .element-editor,
 .monster-manager .star-editor {
 	display: grid;
 	grid-column-gap: 1em;
