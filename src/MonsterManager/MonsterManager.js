@@ -8,6 +8,8 @@ import { MonsterDisplay } from '../MonsterDisplay/MonsterDisplay'
 import './MonsterManager.css'
 
 class MonsterManager extends Component {
+	monsterData = []
+
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -20,6 +22,14 @@ class MonsterManager extends Component {
 
 	componentDidMount() {
 		window.document.title = 'Monster Manager | Summ Go'
+
+		window.fetch('./monsterData.json')
+			.then(response => response.json())
+			.then(monsters => {
+				this.monsterData = monsters
+				// console.log(monsters)
+			})
+
 		if (!window.localStorage) {
 			return
 		}
