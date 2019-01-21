@@ -158,6 +158,39 @@ describe('Monster Manager component', () => {
 	})
 })
 
+describe('loading monster data using fetch when mounted', () => {
+	const loadedMonsters = [
+		new Monster('mon 1', MonsterElement.Dark, 1),
+		new Monster('mon 2', MonsterElement.Light, 3),
+		new Monster('mon 3', MonsterElement.Wind, 5)
+	]
+
+	let fixture
+	let mockFetch
+	let mockResponse
+	let originalFetch
+
+	beforeEach(() => {
+		mockFetch = jest.fn(url => Promise.resolve(mockResponse))
+		mockResponse = { json: jest.fn(() => loadedMonsters) }
+
+		originalFetch = window.fetch
+		window.fetch = mockFetch
+
+		fixture = mount(<MonsterManager />)
+	})
+
+	it('should fetch and store monster data', () => {
+		expect(mockFetch).toHaveBeenLastCalledWith('./monsterData.json')
+		expect(mockResponse.json).toHaveBeenCalledTimes(1)
+		expect(fixture.instance().monsterData).toEqual(loadedMonsters)
+	})
+	
+	afterEach(() => {
+		window.fetch = originalFetch
+	})
+})
+
 describe('when localStorage has a bad value', () => {
 	let fixture
 	let mockConsole
