@@ -23,12 +23,7 @@ class MonsterManager extends Component {
 	componentDidMount() {
 		window.document.title = 'Monster Manager | Summ Go'
 
-		window.fetch('./monsterData.json')
-			.then(response => response.json())
-			.then(monsters => {
-				this.monsterData = monsters
-				// console.log(monsters)
-			})
+		this.loadMonsters()
 
 		if (!window.localStorage) {
 			return
@@ -129,6 +124,12 @@ class MonsterManager extends Component {
 	}
 
 	clearMonsters = () => this.setState({ monsters: [] })
+
+	loadMonsters = async () => {
+		const response = await window.fetch('./monsterData.json')
+		const monsters = await response.json()
+		this.monsterData = monsters
+	}
 
 	onMonsterElementChange = ({ target: { value } }) => this.setState({ monsterElement: value })
 
