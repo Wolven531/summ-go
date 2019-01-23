@@ -16,7 +16,8 @@ class MonsterManager extends Component {
 			monsterElement: MonsterElement.Light,
 			monsterName: '',
 			monsterStars: 3,
-			monsters: []
+			monsters: [],
+			searchQuery: ''
 		}
 	}
 
@@ -59,6 +60,9 @@ class MonsterManager extends Component {
 							type="text"
 							onChange={this.onMonsterNameChange}
 							value={this.state.monsterName} />
+						{this.monsterData.length > 0 && this.searchQuery !== '' && <div>
+
+						</div>}
 					</section>
 					<section className="star-editor">
 						{[1,2,3,4,5].map(num => <p key={`star-${num}`}>
