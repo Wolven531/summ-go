@@ -185,6 +185,16 @@ describe('loading monster data using fetch when mounted', () => {
 		expect(mockResponse.json).toHaveBeenCalledTimes(1)
 		expect(fixture.instance().monsterData).toEqual(loadedMonsters)
 	})
+
+	describe('typing in search query', () => {
+		beforeEach(() => {
+			fixture.find('input#mon-name').simulate('change', { target: { value: 'Bailey' } })
+		})
+
+		it('should show search results box', () => {
+			expect(fixture.find('.search-results').exists()).toBe(true)
+		})
+	})
 	
 	afterEach(() => {
 		window.fetch = originalFetch
