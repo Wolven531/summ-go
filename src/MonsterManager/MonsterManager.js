@@ -60,7 +60,7 @@ class MonsterManager extends Component {
 							type="text"
 							onChange={this.onMonsterNameChange}
 							value={this.state.monsterName} />
-						{this.monsterData.length > 0 && this.searchQuery !== '' && <div>
+						{this.monsterData.length > 0 && this.searchQuery !== '' && <div className="search-results">
 
 						</div>}
 					</section>
@@ -123,7 +123,8 @@ class MonsterManager extends Component {
 			monsterElement: MonsterElement.Light,
 			monsterName: '',
 			monsterStars: 3,
-			monsters: updatedMonsters
+			monsters: updatedMonsters,
+			searchQuery: ''
 		})
 	}
 
@@ -137,7 +138,7 @@ class MonsterManager extends Component {
 
 	onMonsterElementChange = ({ target: { value } }) => this.setState({ monsterElement: value })
 
-	onMonsterNameChange = ({ target: { value } }) => this.setState({ monsterName: value })
+	onMonsterNameChange = ({ target: { value } }) => this.setState({ monsterName: value, searchQuery: value })
 
 	onMonsterStarsChange = ({ target: { value } }) => this.setState({ monsterStars: parseInt(value, 10) })
 
