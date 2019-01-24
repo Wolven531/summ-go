@@ -12,10 +12,15 @@
 }
 
 .monster-manager .add-monster {
-	background-color: #090;
+	background-color: #009;
 	color: #fff;
 	font-weight: bold;
 	padding: 1em;
+}
+
+.monster-manager .add-monster:hover {
+	background-color: #090;
+	outline: 1px solid #000;
 }
 
 .monster-manager .element-editor,
