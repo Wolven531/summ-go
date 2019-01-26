@@ -60,8 +60,15 @@ class MonsterManager extends Component {
 							type="text"
 							onChange={this.onMonsterNameChange}
 							value={this.state.monsterName} />
-						{this.monsterData.length > 0 && this.searchQuery !== '' && <div className="search-results">
-
+						{this.monsterData.length > 0 && this.state.searchQuery !== '' && <div className="search-results">
+							<ul>
+								{this.monsterData
+									.filter(mon => mon.name.indexOf(this.state.searchQuery) > -1)
+									.map(mon =>
+										<li key={mon.name} className="search-result">{mon.name}</li>
+									)
+								}
+							</ul>
 						</div>}
 					</section>
 					<section className="star-editor">
