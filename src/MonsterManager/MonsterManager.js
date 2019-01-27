@@ -63,9 +63,10 @@ class MonsterManager extends Component {
 						{this.monsterData.length > 0 && this.state.searchQuery !== '' && <div className="search-results">
 							<ul>
 								{this.monsterData
-									.filter(mon => mon.name.indexOf(this.state.searchQuery) > -1)
+									.filter(mon => mon.name.indexOf(this.state.searchQuery) > -1
+										|| mon.awakenedName.indexOf(this.state.searchQuery) > -1)
 									.map(mon =>
-										<li key={mon.name} className="search-result">{mon.name}</li>
+										<li key={mon.awakenedName} className="search-result">{mon.awakenedName} ({mon.element} {mon.name})</li>
 									)
 								}
 							</ul>
