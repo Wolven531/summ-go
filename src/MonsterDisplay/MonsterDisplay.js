@@ -4,7 +4,7 @@ import * as React from 'react'
 
 const MonsterDisplay = ({ monster }) => (
 	<article className="monster-display">
-		<h3>{monster.name}</h3>
+		<h3>{monster.awakenedName}</h3>
 		<section className="monster-stars">
 			{monster.stars}
 		</section>
