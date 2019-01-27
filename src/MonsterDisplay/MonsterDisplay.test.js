@@ -8,7 +8,7 @@ import { MonsterElement } from '../Models/MonsterElement';
 
 describe('Monster Display component', () => {
 	let fixture
-	const targetMonster = new Monster('mon 1', MonsterElement.Dark, 4)
+	const targetMonster = new Monster('Boomerang Warrior', 'Marina', MonsterElement.Dark, 4)
 	
 	beforeEach(() => {
 		fixture = shallow(<MonsterDisplay monster={targetMonster} />)
@@ -17,7 +17,7 @@ describe('Monster Display component', () => {
 	it('renders monster details', () => {
 		expect(fixture).toMatchSnapshot()
 
-		expect(fixture.find('h3').text()).toBe('mon 1')
+		expect(fixture.find('h3').text()).toBe('Marina')
 		expect(fixture.find('.monster-element').text()).toBe('dark')
 		expect(fixture.find('.monster-stars').text()).toBe('4')
 	})
