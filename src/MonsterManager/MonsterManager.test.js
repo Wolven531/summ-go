@@ -160,9 +160,9 @@ describe('Monster Manager component', () => {
 
 describe('loading monster data using fetch when mounted', () => {
 	const loadedMonsters = [
-		new Monster('mon 1', MonsterElement.Dark, 1),
-		new Monster('mon 2', MonsterElement.Light, 3),
-		new Monster('mon 3', MonsterElement.Wind, 5)
+		new Monster('Boomerang Warrior', 'Marina', MonsterElement.Dark, 4),
+		new Monster('Boomerang Warrior', 'Bailey', MonsterElement.Light, 3),
+		new Monster('Boomerang Warrior', 'mon 3', MonsterElement.Wind, 5)
 	]
 
 	let fixture
@@ -194,7 +194,7 @@ describe('loading monster data using fetch when mounted', () => {
 		it('should show search results box', () => {
 			fixture.update()
 			expect(fixture.find('.search-results').exists()).toBe(true)
-			expect(fixture.find('li.search-result').text()).toBe('Bailey')
+			expect(fixture.find('li.search-result').text()).toBe('Bailey (light Boomerang Warrior)')
 		})
 	})
 	
