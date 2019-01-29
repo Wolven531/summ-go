@@ -1,6 +1,9 @@
 import * as React from 'react'
 
 // import { Monster } from '../Models/Monster'
+import { capitalize } from '../util'
+
+import './MonsterDisplay.css'
 
 const MonsterDisplay = ({ monster }) => (
 	<article className="monster-display">
@@ -8,8 +11,8 @@ const MonsterDisplay = ({ monster }) => (
 		<section className="monster-stars">
 			{monster.stars}
 		</section>
-		<section className="monster-element">
-			{monster.element}
+		<section className="element">
+			{capitalize(monster.element.toString())}
 		</section>
 	</article>
 )
