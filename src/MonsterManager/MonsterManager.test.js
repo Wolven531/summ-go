@@ -194,7 +194,7 @@ describe('loading monster data using fetch when mounted', () => {
 		it('should show search results box', () => {
 			fixture.update()
 			expect(fixture.find('.search-results').exists()).toBe(true)
-			expect(fixture.find('li.search-result').text()).toBe('Bailey (light Boomerang Warrior)')
+			expect(fixture.find('li.search-result').text()).toBe('Bailey (Light Boomerang Warrior)')
 		})
 	})
 	
