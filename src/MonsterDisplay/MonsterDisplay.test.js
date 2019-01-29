@@ -18,7 +18,7 @@ describe('Monster Display component', () => {
 		expect(fixture).toMatchSnapshot()
 
 		expect(fixture.find('h3').text()).toBe('Marina')
-		expect(fixture.find('.monster-element').text()).toBe('dark')
+		expect(fixture.find('.element').text()).toBe('Dark')
 		expect(fixture.find('.monster-stars').text()).toBe('4')
 	})
 })
