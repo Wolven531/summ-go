@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { capitalize } from '../util'
+
 import { Monster } from '../Models/Monster'
 import { MonsterElement } from '../Models/MonsterElement'
 
@@ -66,7 +68,7 @@ class MonsterManager extends Component {
 									.filter(mon => mon.name.indexOf(this.state.searchQuery) > -1
 										|| mon.awakenedName.indexOf(this.state.searchQuery) > -1)
 									.map(mon =>
-										<li key={mon.awakenedName} className="search-result">{mon.awakenedName} ({mon.element} {mon.name})</li>
+										<li key={mon.awakenedName} className="search-result">{mon.awakenedName} (<span className="element">{capitalize(mon.element)}</span> {mon.name})</li>
 									)
 								}
 							</ul>
