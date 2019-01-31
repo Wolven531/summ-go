@@ -196,6 +196,17 @@ describe('loading monster data using fetch when mounted', () => {
 			expect(fixture.find('.search-results').exists()).toBe(true)
 			expect(fixture.find('li.search-result').text()).toBe('Bailey (Light Boomerang Warrior)')
 		})
+
+		describe('clicking on search result', () => {
+			beforeEach(() => {
+				fixture.find('.search-result').simulate('click', { target: { } })
+			})
+	
+			it('should add monster to current monsters', () => {
+				fixture.update()
+				expect(fixture.find('.monster-storage').find(MonsterDisplay).length).toBe(1)
+			})
+		})
 	})
 	
 	afterEach(() => {
