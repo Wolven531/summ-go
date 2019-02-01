@@ -68,7 +68,7 @@ class MonsterManager extends Component {
 									.filter(mon => mon.name.indexOf(this.state.searchQuery) > -1
 										|| mon.awakenedName.indexOf(this.state.searchQuery) > -1)
 									.map(mon =>
-										<li key={mon.awakenedName} className="search-result">{mon.awakenedName} (<span className="element">{capitalize(mon.element)}</span> {mon.name})</li>
+										<li key={mon.awakenedName} className="search-result" onClick={() => { this.addLoadedMonster(mon) }}>{mon.awakenedName} (<span className="element">{capitalize(mon.element)}</span> {mon.name})</li>
 									)
 								}
 							</ul>
@@ -117,6 +117,18 @@ class MonsterManager extends Component {
 				</section>
 			</article>
 		)
+	}
+
+	addLoadedMonster = mon => {
+		const updatedMonsters = [...this.state.monsters].concat(mon)
+
+		this.setState({
+			monsterElement: MonsterElement.Light,
+			monsterName: '',
+			monsterStars: 3,
+			monsters: updatedMonsters,
+			searchQuery: ''
+		})
 	}
 
 	addMonster = evt => {
