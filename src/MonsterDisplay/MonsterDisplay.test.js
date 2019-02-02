@@ -17,7 +17,7 @@ describe('Monster Display component', () => {
 	it('renders monster details', () => {
 		expect(fixture).toMatchSnapshot()
 
-		expect(fixture.find('h3').text()).toBe('Marina')
+		expect(fixture.find('h3').text()).toBe('Marina (Dark Boomerang Warrior)')
 		expect(fixture.find('.element').text()).toBe('Dark')
 		expect(fixture.find('.monster-stars').text()).toBe('4')
 	})
