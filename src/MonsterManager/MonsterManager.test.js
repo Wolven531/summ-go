@@ -242,9 +242,9 @@ describe('when localStorage has a bad value', () => {
 describe('when localStorage has valid monsters', () => {
 	let fixture
 	let loadedMonsters = [
-		new Monster('mon 1', MonsterElement.Dark, 1),
-		new Monster('mon 2', MonsterElement.Light, 3),
-		new Monster('mon 3', MonsterElement.Wind, 5)
+		new Monster('mon 1', 'awakened 1', MonsterElement.Dark, 1),
+		new Monster('mon 2', 'awakened 2', MonsterElement.Light, 3),
+		new Monster('mon 3', 'awakened 3', MonsterElement.Wind, 5)
 	]
 
 	beforeEach(() => {
