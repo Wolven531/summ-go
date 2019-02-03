@@ -45,6 +45,9 @@ class MonsterManager extends Component {
 	}
 
 	render() {
+		const { searchQuery } = this.state
+		const lowerSearchQuery = searchQuery.toLowerCase()
+
 		return (
 			<article className="monster-manager">
 				<h2>Monster Manager</h2>
@@ -62,11 +65,11 @@ class MonsterManager extends Component {
 							type="text"
 							onChange={this.onMonsterNameChange}
 							value={this.state.monsterName} />
-						{this.monsterData.length > 0 && this.state.searchQuery !== '' && <div className="search-results">
+						{this.monsterData.length > 0 && searchQuery !== '' && <div className="search-results">
 							<ul>
 								{this.monsterData
-									.filter(mon => mon.name.indexOf(this.state.searchQuery) > -1
-										|| mon.awakenedName.indexOf(this.state.searchQuery) > -1)
+									.filter(mon => mon.name.toLowerCase().indexOf(lowerSearchQuery) > -1
+										|| mon.awakenedName.toLowerCase().indexOf(lowerSearchQuery) > -1)
 									.map(mon =>
 										<li key={mon.awakenedName} className="search-result" onClick={() => { this.addLoadedMonster(mon) }}>{mon.awakenedName} (<span className="element">{capitalize(mon.element)}</span> {mon.name})</li>
 									)
