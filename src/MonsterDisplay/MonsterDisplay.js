@@ -6,6 +6,7 @@ import './MonsterDisplay.css'
 
 const MonsterDisplay = ({ monster }) => {
 	const {
+		awakenedImage,
 		awakenedName,
 		element,
 		name,
@@ -16,6 +17,7 @@ const MonsterDisplay = ({ monster }) => {
 	return (
 		<article className="monster-display">
 			<h3>{awakenedName} ({elementDisplay} {name})</h3>
+			<img src={`data:image/png;base64,${awakenedImage}`} alt={`Awakened portrait for ${awakenedName}`} />
 			<section className="monster-stars">
 				{stars}
 			</section>

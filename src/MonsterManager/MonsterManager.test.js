@@ -160,9 +160,9 @@ describe('Monster Manager component', () => {
 
 describe('loading monster data using fetch when mounted', () => {
 	const loadedMonsters = [
-		new Monster('Boomerang Warrior', 'Marina', MonsterElement.Dark, 4),
-		new Monster('Boomerang Warrior', 'Bailey', MonsterElement.Light, 3),
-		new Monster('Boomerang Warrior', 'mon 3', MonsterElement.Wind, 5)
+		new Monster('Boomerang Warrior', 'Marina', MonsterElement.Dark, 4, ''),
+		new Monster('Boomerang Warrior', 'Bailey', MonsterElement.Light, 3, 'someImgData'),
+		new Monster('Boomerang Warrior', 'mon 3', MonsterElement.Wind, 5, '')
 	]
 
 	let fixture
@@ -195,6 +195,9 @@ describe('loading monster data using fetch when mounted', () => {
 			fixture.update()
 			expect(fixture.find('.search-results').exists()).toBe(true)
 			expect(fixture.find('li.search-result').text()).toBe('Bailey (Light Boomerang Warrior)')
+			const imgProps = fixture.find('li.search-result img').props()
+			expect(imgProps.src).toBe('data:image/png;base64,someImgData')
+			expect(imgProps.alt).toBe('Awakened portrait for Bailey')
 		})
 	})
 
@@ -255,9 +258,9 @@ describe('when localStorage has a bad value', () => {
 describe('when localStorage has valid monsters', () => {
 	let fixture
 	let loadedMonsters = [
-		new Monster('mon 1', 'awakened 1', MonsterElement.Dark, 1),
-		new Monster('mon 2', 'awakened 2', MonsterElement.Light, 3),
-		new Monster('mon 3', 'awakened 3', MonsterElement.Wind, 5)
+		new Monster('mon 1', 'awakened 1', MonsterElement.Dark, 1, ''),
+		new Monster('mon 2', 'awakened 2', MonsterElement.Light, 3, ''),
+		new Monster('mon 3', 'awakened 3', MonsterElement.Wind, 5, '')
 	]
 
 	beforeEach(() => {

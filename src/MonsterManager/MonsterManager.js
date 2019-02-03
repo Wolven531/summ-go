@@ -71,7 +71,11 @@ class MonsterManager extends Component {
 									.filter(mon => mon.name.toLowerCase().indexOf(lowerSearchQuery) > -1
 										|| mon.awakenedName.toLowerCase().indexOf(lowerSearchQuery) > -1)
 									.map(mon =>
-										<li key={mon.awakenedName} className="search-result" onClick={() => { this.addLoadedMonster(mon) }}>{mon.awakenedName} (<span className="element">{capitalize(mon.element)}</span> {mon.name})</li>
+										<li key={mon.awakenedName} className="search-result" onClick={() => { this.addLoadedMonster(mon) }}>
+											<img src={`data:image/png;base64,${mon.awakenedImage}`} alt={`Awakened portrait for ${mon.awakenedName}`} />
+											<br/>
+											{mon.awakenedName} (<span className="element">{capitalize(mon.element)}</span> {mon.name})
+										</li>
 									)
 								}
 							</ul>
@@ -145,7 +149,8 @@ class MonsterManager extends Component {
 			this.state.monsterName,
 			this.state.monsterName,
 			this.state.monsterElement,
-			this.state.monsterStars)
+			this.state.monsterStars,
+			'')
 		const updatedMonsters = [...this.state.monsters].concat(newMonster)
 
 		this.setState({

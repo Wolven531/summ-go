@@ -14,11 +14,12 @@ class Monster {
 		"image"
 		"imageSource"
 	*/
-	constructor(name, awakenedName, element, stars) {
+	constructor(name, awakenedName, element, stars, awakenedImage) {
 		this.name = name
 		this.awakenedName = awakenedName
 		this.element = element
 		this.stars = stars
+		this.awakenedImage = awakenedImage
 	}
 }
 

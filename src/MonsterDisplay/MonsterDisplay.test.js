@@ -1,14 +1,14 @@
 import React from 'react'
 
-import { mount, shallow } from 'enzyme'
+import { shallow } from 'enzyme'
 
 import { MonsterDisplay } from './MonsterDisplay'
-import { Monster } from '../Models/Monster';
-import { MonsterElement } from '../Models/MonsterElement';
+import { Monster } from '../Models/Monster'
+import { MonsterElement } from '../Models/MonsterElement'
 
 describe('Monster Display component', () => {
 	let fixture
-	const targetMonster = new Monster('Boomerang Warrior', 'Marina', MonsterElement.Dark, 4)
+	const targetMonster = new Monster('Boomerang Warrior', 'Marina', MonsterElement.Dark, 4, 'someImgData')
 	
 	beforeEach(() => {
 		fixture = shallow(<MonsterDisplay monster={targetMonster} />)
@@ -20,5 +20,6 @@ describe('Monster Display component', () => {
 		expect(fixture.find('h3').text()).toBe('Marina (Dark Boomerang Warrior)')
 		expect(fixture.find('.element').text()).toBe('Dark')
 		expect(fixture.find('.monster-stars').text()).toBe('4')
+		expect(fixture.find('img').props().src).toBe('data:image/png;base64,someImgData')
 	})
 })
