@@ -202,8 +202,9 @@ describe('loading monster data using fetch when mounted', () => {
 				fixture.find('.search-result').simulate('click', { target: { } })
 			})
 	
-			it('should add monster to current monsters', () => {
+			it('should add monster to current monsters and clear search box', () => {
 				fixture.update()
+				expect(fixture.find('input#mon-name').props().value).toBe('')
 				expect(fixture.find('.monster-storage').find(MonsterDisplay).length).toBe(1)
 			})
 		})
