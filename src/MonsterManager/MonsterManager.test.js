@@ -186,6 +186,18 @@ describe('loading monster data using fetch when mounted', () => {
 		expect(fixture.instance().monsterData).toEqual(loadedMonsters)
 	})
 
+	describe('typing in wrong case search query', () => {
+		beforeEach(() => {
+			fixture.find('input#mon-name').simulate('change', { target: { value: 'bAiLeY' } })
+		})
+
+		it('should show search results box', () => {
+			fixture.update()
+			expect(fixture.find('.search-results').exists()).toBe(true)
+			expect(fixture.find('li.search-result').text()).toBe('Bailey (Light Boomerang Warrior)')
+		})
+	})
+
 	describe('typing in search query', () => {
 		beforeEach(() => {
 			fixture.find('input#mon-name').simulate('change', { target: { value: 'Bailey' } })
