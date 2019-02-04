@@ -8,18 +8,18 @@ class App extends Component {
 	render() {
 		return (
 			<article className="app">
-				<div class="header">
+				<div className="header">
 					<h1>Summ Go</h1>
 				</div>
-				<div class="sidebar">
+				<div className="sidebar">
 					sidebar
 				</div>
-				<div class="content-1">
+				<div className="content-1">
 					<MonsterManager />
 				</div>
-				<div class="content-2">Content-2</div>
-				<div class="content-3">Content-3</div>
-				<div class="footer">&copy; Anthony Williams 2019</div>
+				<div className="content-2">Content-2</div>
+				<div className="content-3">Content-3</div>
+				<div className="footer">&copy; Anthony Williams 2019</div>
 			</article>
 		)
 	}
