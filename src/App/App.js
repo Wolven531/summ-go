@@ -17,8 +17,10 @@ class App extends Component {
 				<div className="content-1">
 					<MonsterManager />
 				</div>
+				{/*
 				<div className="content-2">Content-2</div>
 				<div className="content-3">Content-3</div>
+				*/}
 				<div className="footer">&copy; Anthony Williams 2019</div>
 			</article>
 		)
