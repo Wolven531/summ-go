@@ -6,7 +6,7 @@ const SearchResult = (props) => {
 	const { mon, onClick } = props
 
 	return (
-		<div className="search-result" onClick={onClick}>
+		<div className="search-result" onClick={() => { onClick(mon) }}>
 			<img src={`data:image/png;base64,${mon.awakenedImage}`}
 				alt={`Awakened portrait for ${mon.awakenedName}`} />
 			<br/>
