@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 
-import { capitalize } from '../util'
-
 import { Monster } from '../Models/Monster'
 import { MonsterElement } from '../Models/MonsterElement'
 
 import { MonsterDisplay } from '../MonsterDisplay/MonsterDisplay'
+import { SearchResult } from '../SearchResult/SearchResult'
 
 import './MonsterManager.css'
 
@@ -71,10 +70,8 @@ class MonsterManager extends Component {
 									.filter(mon => mon.name.toLowerCase().indexOf(lowerSearchQuery) > -1
 										|| mon.awakenedName.toLowerCase().indexOf(lowerSearchQuery) > -1)
 									.map(mon =>
-										<li key={mon.awakenedName} className="search-result" onClick={() => { this.addLoadedMonster(mon) }}>
-											<img src={`data:image/png;base64,${mon.awakenedImage}`} alt={`Awakened portrait for ${mon.awakenedName}`} />
-											<br/>
-											{mon.awakenedName} (<span className="element">{capitalize(mon.element)}</span> {mon.name})
+										<li key={mon.awakenedName}>
+											<SearchResult mon={mon} onClick={this.addLoadedMonster} />
 										</li>
 									)
 								}
