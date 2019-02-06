@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-import { Monster } from '../Models/Monster'
 import { MonsterElement } from '../Models/MonsterElement'
 
 import { MonsterDisplay } from '../MonsterDisplay/MonsterDisplay'
@@ -55,61 +54,30 @@ class MonsterManager extends Component {
 						className="store-to-local"
 						onClick={this.storeMonstersToLocal}>Store in Local Storage</button>
 				</section>
-				<form onSubmit={this.addMonster}>
-					<section>
-						<label htmlFor="mon-name">Name</label>
-						<input
-							id="mon-name"
-							name="mon-name"
-							type="text"
-							onChange={this.onMonsterNameChange}
-							value={this.state.monsterName} />
-						{this.monsterData.length > 0 && searchQuery !== '' && <div className="search-results">
-							<ul>
-								{this.monsterData
-									.filter(mon => mon.name.toLowerCase().indexOf(lowerSearchQuery) > -1
-										|| mon.awakenedName.toLowerCase().indexOf(lowerSearchQuery) > -1)
-									.map(mon =>
-										<li key={mon.awakenedName}>
-											<SearchResult mon={mon} onClick={this.addLoadedMonster} />
-										</li>
-									)
-								}
-							</ul>
-						</div>}
-					</section>
-					<section className="star-editor">
-						{[1,2,3,4,5].map(num => <p key={`star-${num}`}>
-							<label htmlFor={`monster-star-${num}`}>{num}</label>
-							<input
-								type="radio"
-								name="monster-stars"
-								id={`monster-star-${num}`}
-								checked={this.state.monsterStars === num}
-								onChange={this.onMonsterStarsChange}
-								value={num} />
-						</p>)}
-					</section>
-					<section className="element-editor">
-						{Object.keys(MonsterElement).map(element => {
-							const elementString = MonsterElement[element]
-							return <p key={`element-${elementString}`}>
-								<label htmlFor={`monster-element-${elementString}`}>{elementString}</label>
-								<input
-									type="radio"
-									name="monster-element"
-									id={`monster-element-${elementString}`}
-									checked={this.state.monsterElement === elementString}
-									onChange={this.onMonsterElementChange}
-									value={elementString} />
-							</p>
-						})}
-					</section>
-					<input className="add-monster" type="submit" value="Add Monster" />
-				</form>
 				<section>
-					<button
-						className="clear-monsters"
+					<label htmlFor="mon-name">Name</label>
+					<input
+						id="mon-name"
+						name="mon-name"
+						type="text"
+						onChange={this.onMonsterNameChange}
+						value={this.state.monsterName} />
+					{this.monsterData.length > 0 && searchQuery !== '' && <div className="search-results">
+						<ul>
+							{this.monsterData
+								.filter(mon => mon.name.toLowerCase().indexOf(lowerSearchQuery) > -1
+									|| mon.awakenedName.toLowerCase().indexOf(lowerSearchQuery) > -1)
+								.map(mon =>
+									<li key={mon.awakenedName}>
+										<SearchResult mon={mon} onClick={this.addLoadedMonster} />
+									</li>
+								)
+							}
+						</ul>
+					</div>}
+				</section>
+				<section>
+					<button className="clear-monsters"
 						onClick={this.clearMonsters}>Clear Current Monsters</button>
 				</section>
 				<section className="monster-storage">
@@ -135,30 +103,6 @@ class MonsterManager extends Component {
 		})
 	}
 
-	addMonster = evt => {
-		evt.preventDefault()
-		if (!this.state.monsterName || this.state.monsterName === '') {
-			alert('Monster name required')
-			return
-		}
-
-		const newMonster = new Monster(
-			this.state.monsterName,
-			this.state.monsterName,
-			this.state.monsterElement,
-			this.state.monsterStars,
-			'')
-		const updatedMonsters = [...this.state.monsters].concat(newMonster)
-
-		this.setState({
-			monsterElement: MonsterElement.Light,
-			monsterName: '',
-			monsterStars: 3,
-			monsters: updatedMonsters,
-			searchQuery: ''
-		})
-	}
-
 	clearMonsters = () => this.setState({ monsters: [] })
 
 	loadMonsters = async () => {
@@ -167,11 +111,7 @@ class MonsterManager extends Component {
 		this.monsterData = monsters
 	}
 
-	onMonsterElementChange = ({ target: { value } }) => this.setState({ monsterElement: value })
-
 	onMonsterNameChange = ({ target: { value } }) => this.setState({ monsterName: value, searchQuery: value })
-
-	onMonsterStarsChange = ({ target: { value } }) => this.setState({ monsterStars: parseInt(value, 10) })
 
 	storeMonstersToLocal = () => {
 		if (!window.localStorage) {
