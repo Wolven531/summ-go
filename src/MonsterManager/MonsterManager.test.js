@@ -35,16 +35,13 @@ describe('Monster Manager component', () => {
 	})
 
 	it('renders monster addition form', () => {
-		const monsterForm = fixture.find('form')
 		const monsterStorage = fixture.find('.monster-storage')
-
-		expect(monsterForm.exists()).toBeTruthy()
 
 		expect(monsterStorage.exists()).toBeTruthy()
 		expect(monsterStorage.text()).toBe('No monsters')
 
 		// NOTE: verify name input
-		const nameInput = monsterForm.find('input#mon-name')
+		const nameInput = fixture.find('input#mon-name')
 		expect(nameInput.exists()).toBeTruthy()
 		const nameProps = nameInput.props()
 
@@ -53,43 +50,6 @@ describe('Monster Manager component', () => {
 		expect(nameProps.type).toEqual('text')
 		expect(nameProps.value).toEqual('')
 		expect(nameProps.onChange).toBeDefined()
-
-		// NOTE: verify star inputs
-		const starInputs = monsterForm.find('input[name="monster-stars"]')
-		expect(starInputs).toHaveLength(5)
-
-		let inputCounter = 1
-		for (const starInput of starInputs) {
-			const starInputProps = starInputs.at(inputCounter - 1).props()
-
-			expect(starInputProps.id).toEqual(`monster-star-${inputCounter}`)
-			expect(starInputProps.name).toEqual('monster-stars')
-			expect(starInputProps.type).toEqual('radio')
-			expect(starInputProps.value).toEqual(inputCounter)
-			expect(starInputProps.onChange).toBeDefined()
-			inputCounter++
-		}
-
-		// NOTE: verify element inputs
-		const elementInputs = monsterForm.find('input[name="monster-element"]')
-		expect(elementInputs).toHaveLength(5)
-
-		for (const elementKey of Object.keys(MonsterElement)) {
-			const elementString = MonsterElement[elementKey]
-			const elementInputProps = monsterForm.find(`input#monster-element-${elementString}`).props()
-
-			expect(elementInputProps.name).toEqual('monster-element')
-			expect(elementInputProps.type).toEqual('radio')
-			expect(elementInputProps.value).toEqual(elementString)
-			expect(elementInputProps.onChange).toBeDefined()
-		}
-
-		// NOTE: verify submit input
-		const submitInput = monsterForm.find('input[type="submit"]')
-		expect(submitInput.exists()).toBeTruthy()
-		const submitProps = submitInput.props()
-
-		expect(submitProps.value).toEqual('Add Monster')
 	})
 
 	it('renders clear current monsters button', () => {
@@ -100,56 +60,14 @@ describe('Monster Manager component', () => {
 		expect(clearButton.props().onClick).toBeDefined()
 	})
 
-	describe('clicking add with empty monster name', () => {
+	describe('clicking clear monsters button', () => {
 		beforeEach(() => {
-			fixture = mount(<MonsterManager />)
-			fixture.find('input[type="submit"]').simulate('submit', { preventDefault: mockPreventDefault })
+			fixture.find('.clear-monsters').simulate('click', {})
 		})
 
-		it('should display alert message', () => {
-			fixture.update()
-			expect(mockPreventDefault).toHaveBeenCalledTimes(1)
-			expect(mockAlert).toHaveBeenCalledTimes(1)
-			expect(mockAlert).toHaveBeenCalledWith('Monster name required')
+		it('should clear the monsters list', () => {
 			expect(fixture.find('.monster-storage .monster-display')).toHaveLength(0)
-		})
-	})
-
-	describe('filling in monster name, stars, and element, and clicking add', () => {
-		beforeEach(() => {
-			// NOTE: use mount due to heavy DOM interaction
-			fixture = mount(<MonsterManager />)
-			fixture.find('input#mon-name').simulate('change', { target: { value: 'mon1' } })
-			fixture.find('input#monster-star-5').simulate('change', { target: { value: 5 } })
-			fixture.find('input#monster-element-fire').simulate('change', { target: { value: 'fire' } })
-			fixture.find('input[type="submit"]').simulate('submit', { preventDefault: mockPreventDefault })
-		})
-
-		it('clears inputs and adds monster to monster storage', () => {
-			fixture.update()
-			expect(mockPreventDefault).toHaveBeenCalledTimes(1)
-			expect(fixture.find('input#mon-name').props().value).toBe('')
-			expect(fixture.find('input#monster-star-5').props().checked).toBeFalsy()
-			expect(fixture.find('input#monster-star-3').props().checked).toBeTruthy()
-			expect(fixture.find('input#monster-element-fire').props().checked).toBeFalsy()
-			expect(fixture.find('input#monster-element-light').props().checked).toBeTruthy()
-
-			expect(fixture.find('.monster-storage').find(MonsterDisplay)).toHaveLength(1)
-		})
-
-		describe('clicking clear monsters button', () => {
-			beforeEach(() => {
-				fixture.find('.clear-monsters').simulate('click', {})
-			})
-
-			it('should clear the monsters list', () => {
-				expect(fixture.find('.monster-storage .monster-display')).toHaveLength(0)
-				expect(fixture.find('.monster-storage p').text()).toBe('No monsters')
-			})
-		})
-
-		afterEach(() => {
-			fixture.unmount()
+			expect(fixture.find('.monster-storage p').text()).toBe('No monsters')
 		})
 	})
 
@@ -194,10 +112,11 @@ describe('loading monster data using fetch when mounted', () => {
 		it('should show search results box', () => {
 			fixture.update()
 			expect(fixture.find('.search-results').exists()).toBe(true)
-			expect(fixture.find('li.search-result').text()).toBe('Bailey (Light Boomerang Warrior)')
-			const imgProps = fixture.find('li.search-result img').props()
-			expect(imgProps.src).toBe('data:image/png;base64,someImgData')
-			expect(imgProps.alt).toBe('Awakened portrait for Bailey')
+			// TODO: update this with SearchResult component
+			// expect(fixture.find('li.search-result').text()).toBe('Bailey (Light Boomerang Warrior)')
+			// const imgProps = fixture.find('li.search-result img').props()
+			// expect(imgProps.src).toBe('data:image/png;base64,someImgData')
+			// expect(imgProps.alt).toBe('Awakened portrait for Bailey')
 		})
 	})
 
@@ -209,7 +128,8 @@ describe('loading monster data using fetch when mounted', () => {
 		it('should show search results box', () => {
 			fixture.update()
 			expect(fixture.find('.search-results').exists()).toBe(true)
-			expect(fixture.find('li.search-result').text()).toBe('Bailey (Light Boomerang Warrior)')
+			// TODO: update this with SearchResult component
+			// expect(fixture.find('li.search-result').text()).toBe('Bailey (Light Boomerang Warrior)')
 		})
 
 		describe('clicking on search result', () => {
