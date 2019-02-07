@@ -1,34 +1,28 @@
 .monster-manager {
 	background-color: rgba(0, 0, 0, .5);
 	display: grid;
-	grid-template-rows: auto repeat(3, auto) 250px 50px;
+	grid-gap: 1rem;
+	grid-template-rows: 4rem auto 3rem;
+	height: 100%;
+	padding: 1rem;
+}
+
+.monster-manager > section {
+	grid-row: 2 / 3;
+}
+
+.monster-manager .store-to-local {
+	grid-column: 1 / 2;
+	grid-row: 3 / 4;
 }
 
 .monster-manager .clear-monsters {
 	background-color: #f00;
 	color: #ff0;
 	font-weight: bold;
+	grid-column: 2 / 3;
+	grid-row: 3 / 4;
 	padding: 1em;
-}
-
-.monster-manager .add-monster {
-	background-color: #009;
-	color: #fff;
-	font-weight: bold;
-	padding: 1em;
-}
-
-.monster-manager .add-monster:hover {
-	background-color: #090;
-	outline: 1px solid #000;
-}
-
-.monster-manager .element-editor,
-.monster-manager .star-editor {
-	display: grid;
-	grid-column-gap: 1em;
-	grid-template-columns: repeat(5, 2.5em);
-	justify-content: center;
 }
 
 .monster-manager .monster-storage {
