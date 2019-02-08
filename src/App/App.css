@@ -2,18 +2,28 @@
 	display: grid;
 	grid-gap: 1rem;
 	grid-template-columns: 200px 1fr;
-	grid-template-rows: 80px 1fr 100px;
+	grid-template-rows: 80px 1fr auto;
 	min-height: 480px;
 	min-width: 600px;
 }
 
 .header {
+	background: #d0e4f7;
+	background: -moz-linear-gradient(left, #d0e4f7 0%, #73b1e7 24%, #0a77d5 50%, #539fe1 79%, #87bcea 100%);
+	background: -webkit-linear-gradient(left, #d0e4f7 0%,#73b1e7 24%,#0a77d5 50%,#539fe1 79%,#87bcea 100%);
+	background: linear-gradient(to right, #d0e4f7 0%,#73b1e7 24%,#0a77d5 50%,#539fe1 79%,#87bcea 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0e4f7', endColorstr='#87bcea',GradientType=1 );
 	grid-column: 1 / 4;
 	grid-row: 1 / 2;
 	text-align: center;
 }
 
 .sidebar {
+	background: #b4e391;
+	background: -moz-linear-gradient(left, #b4e391 0%, #61c419 50%, #b4e391 100%);
+	background: -webkit-linear-gradient(left, #b4e391 0%,#61c419 50%,#b4e391 100%);
+	background: linear-gradient(to right, #b4e391 0%,#61c419 50%,#b4e391 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4e391', endColorstr='#b4e391',GradientType=1 );
 	grid-column: 1 / 2;
 	grid-row: 2 / 4;
 }
@@ -34,6 +44,12 @@
 }
 
 .footer {
+	background: rgb(169,3,41);
+	background: -moz-linear-gradient(top, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+	background: -webkit-linear-gradient(top, rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+	background: linear-gradient(to bottom, rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 );
 	grid-column: 1 / 4;
 	grid-row: 4 / 5;
+	text-align: center;
 }
