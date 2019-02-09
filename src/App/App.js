@@ -11,7 +11,9 @@ class App extends Component {
 				<div className="header">
 					<h1>Summ Go</h1>
 				</div>
+				{/*
 				<div className="sidebar">&nbsp;</div>
+				*/}
 				<div className="content-1">
 					<MonsterManager />
 				</div>
