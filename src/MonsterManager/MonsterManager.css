@@ -3,7 +3,6 @@
 	display: grid;
 	grid-gap: 1rem;
 	grid-template-rows: 4rem auto 3rem;
-	height: 100%;
 	padding: 1rem;
 }
 
