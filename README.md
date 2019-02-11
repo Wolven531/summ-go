@@ -1,5 +1,13 @@
 # SummGo
 
+## Development Environment Setup
+
+Ensure `eslint` and `eslint-plugin-react` are installed globally
+
+```bash
+npm i -g eslint eslint-plugin-react
+```
+
 ## Running
 
 ```bash
