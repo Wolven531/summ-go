@@ -8,8 +8,6 @@ import { SearchResult } from '../SearchResult/SearchResult'
 import './MonsterManager.css'
 
 class MonsterManager extends Component {
-	monsterData = []
-
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -19,6 +17,7 @@ class MonsterManager extends Component {
 			monsters: [],
 			searchQuery: ''
 		}
+		this.monsterData = []
 	}
 
 	componentDidMount() {
@@ -37,8 +36,8 @@ class MonsterManager extends Component {
 			const monsters = JSON.parse(monstersString)
 			this.setState({ monsters })
 		}
-		catch {
-			console.warn('Failed to load monsters from local storage')
+		catch(err) {
+			console.warn('Failed to load monsters from local storage', err)
 		}
 	}
 
