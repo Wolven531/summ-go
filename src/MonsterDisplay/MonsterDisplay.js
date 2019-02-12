@@ -1,4 +1,7 @@
 import * as React from 'react'
+import PropTypes from 'prop-types'
+
+import { Monster } from '../Models/Monster'
 
 import { capitalize } from '../util'
 
@@ -26,6 +29,10 @@ const MonsterDisplay = ({ monster }) => {
 			</section>
 		</article>
 	)
+}
+
+MonsterDisplay.propTypes = {
+	monster: PropTypes.instanceOf(Monster)
 }
 
 export {
