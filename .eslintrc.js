@@ -16,9 +16,23 @@ module.exports = {
 		"sourceType": "module"
 	},
 	"plugins": [
+		"prefer-arrow",
 		"react"
 	],
 	"rules": {
+		// "func-style": [
+		// 	"error",
+		// 	"expression",
+		// 	{ "allowArrowFunctions": true }
+		// ],
+		"prefer-arrow/prefer-arrow-functions": [
+			"warn",
+			{
+				"disallowPrototype": true,
+				"singleReturnOnly": true,
+				"classPropertiesAllowed": true
+			}
+		],
 		"indent": [
 			"error",
 			"tab"
