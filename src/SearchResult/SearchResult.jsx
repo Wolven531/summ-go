@@ -1,4 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
+import { Monster } from '../Models/Monster'
 
 import { capitalize } from '../util'
 
@@ -14,6 +17,11 @@ const SearchResult = (props) => {
 			(<span className="element">{capitalize(mon.element)}</span> {mon.name})
 		</div>
 	)
+}
+
+SearchResult.propTypes = {
+	mon: PropTypes.instanceOf(Monster),
+	onClick: PropTypes.func
 }
 
 export { SearchResult }
