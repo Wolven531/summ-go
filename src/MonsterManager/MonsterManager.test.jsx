@@ -1,6 +1,8 @@
 import React from 'react'
 
+import { jest } from 'jest'
 import { mount, shallow } from 'enzyme'
+import { afterEach, beforeEach, describe, expect, it } from 'mocha'
 
 import { Monster } from '../Models/Monster'
 
@@ -11,14 +13,12 @@ import { MonsterElement } from '../Models/MonsterElement'
 describe('Monster Manager component', () => {
 	let fixture
 	let mockAlert
-	let mockPreventDefault
 	let originalAlert
 	
 	beforeEach(() => {
 		fixture = shallow(<MonsterManager />)
 		
 		mockAlert = jest.fn()
-		mockPreventDefault = jest.fn()
 
 		originalAlert = window.alert
 		window.alert = mockAlert
@@ -89,6 +89,7 @@ describe('loading monster data using fetch when mounted', () => {
 	let originalFetch
 
 	beforeEach(() => {
+		// eslint-disable-next-line no-unused-vars
 		mockFetch = jest.fn(url => Promise.resolve(mockResponse))
 		mockResponse = { json: jest.fn(() => loadedMonsters) }
 
@@ -151,6 +152,7 @@ describe('loading monster data using fetch when mounted', () => {
 })
 
 describe('when localStorage has a bad value', () => {
+	// eslint-disable-next-line no-unused-vars
 	let fixture
 	let mockConsole
 	let originalConsole
